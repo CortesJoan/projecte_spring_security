@@ -39,7 +39,6 @@ public class ServeiManga {
         boolean encontrado = false;
         for (int i = 0; i < repositori.count() && !encontrado; i++) {
             if (s.equals(repositori.findById((long) i).get().getNom())){
-
                 manga = repositori.findById((long) i).get();
                 encontrado=true;
             }
@@ -62,8 +61,8 @@ public class ServeiManga {
     public void init() {
         if (repositori.count()==0) {
             repositori.save(new Manga("BERSERK", "kintaro Miura"));
-            repositori.save(new Manga("Terry", "Fatal Fury"));
-            repositori.save(new Manga("Jin", "Tekken"));
+            repositori.save(new Manga("The Promised Neverland", "Kaiu Shirai"));
+            repositori.save(new Manga("Blame!", "Tsutomu Nihei"));
         }
     }
 }

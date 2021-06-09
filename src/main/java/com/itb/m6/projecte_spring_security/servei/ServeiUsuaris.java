@@ -32,15 +32,15 @@ public class ServeiUsuaris {
     }
 
     public Usuari consultaPerNom(String username) {
-        final Usuari[] usuariR = new Usuari[1];
+        final Usuari[] usuariFind = new Usuari[1];
         repositori.findAll().forEach(new Consumer<Usuari>() {
             @Override
             public void accept(Usuari usuari) {
                 if (usuari.getUsername().equals(username))
-                    usuariR[0] = usuari;
+                    usuariFind[0] = usuari;
             }
         });
-        return usuariR[0];
+        return usuariFind[0];
     }
 
 

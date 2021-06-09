@@ -13,34 +13,31 @@ public class ControladorDades {
     private ServeiManga serveiManga;
     String nom;
 
-
     @RequestMapping( value ="/delete/{name}", method = RequestMethod.POST)
-    public String eliminarPersonatgePerNom(@PathVariable("name") String nomManga){
+    public String eliminarMangaPerNom(@PathVariable("name") String nomManga){
         serveiManga.eliminatPerNom(nomManga);
         return "redirect:/home";
     }
 
     @RequestMapping("/afegir")
-    public String afegirPersonatge(Model model) {
+    public String afegirManga(Model model) {
         model.addAttribute("Manga", new Manga());
         return "afegirManga";
     }
 
     @GetMapping("/home")
-    public String llistarPersonatge(Model m){
+    public String llistarMangas(Model m){
         m.addAttribute("llistaManga", serveiManga.llistat());
         m.addAttribute("Manga",new Manga());
         return "home";
     }
-    @PostMapping("/afegirPersonatge")
-    //empleatForm és el nom de l'objecte que es recull al formulari, el CommandObject (bean)
-    //https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#handling-the-command-object
-    public String afegirPersonatgeSubmit(@ModelAttribute("Manga") Manga manga){
+    @PostMapping("/afegirManga")
+    public String afegirMangaSubmit(@ModelAttribute("Manga") Manga manga){
         serveiManga.afegir(manga);
         return "redirect:/home";
     }
     @RequestMapping( value ="/update/{name}", method = RequestMethod.POST)
-    public String updatePersonatge(@PathVariable("name") String manga, Model m){
+    public String updateManga(@PathVariable("name") String manga, Model m){
 
         nom = manga;
         m.addAttribute("Manga", serveiManga.consultaMangaPerNom(manga));
@@ -48,8 +45,8 @@ public class ControladorDades {
         return "modificarManga";
     }
 
-    @PostMapping("/actualitzarPersonatge")
-    public String updatePersonatgeSubmit(@ModelAttribute("Manga") Manga e){
+    @PostMapping("/modificarManga")
+    public String updateMangaSubmit(@ModelAttribute("Manga") Manga e){
         serveiManga.actualitzarPersonatgePerNom(e, nom);
         return "redirect:/home";
     }
